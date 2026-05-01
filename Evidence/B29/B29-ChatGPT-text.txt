@@ -1,0 +1,97 @@
+This one isn’t subtle—the root issue is a **credential file being exposed and retrievable over HTTP**, so the fix is mostly about **eliminating that exposure and upgrading out of the vulnerable code path**.
+
+Here’s what you should do:
+
+---
+
+## 🔧 1. Upgrade to a Fixed Version (Primary Fix)
+
+Cisco has already resolved this in later releases.
+
+* **Upgrade Cisco Catalyst SD-WAN Manager to version 20.18 or newer**
+* Any version **before 20.18 is vulnerable**
+
+This is the **only complete and reliable fix**.
+
+---
+
+## 🔒 2. Remove / Protect the Credential File (If Immediate Upgrade Isn’t Possible)
+
+If you can’t patch right away:
+
+* Locate the **DCA credential file** on the system
+* Ensure:
+
+  * It is **not accessible via HTTP/HTTPS**
+  * Proper **file permissions** are enforced (restricted to root/system only)
+* If possible:
+
+  * **Delete and regenerate credentials**
+  * Rotate any exposed passwords
+
+---
+
+## 🌐 3. Restrict Network Access
+
+Reduce exposure until patched:
+
+* Block external access to the SD-WAN Manager interface
+* Allow only trusted IPs (management network / VPN)
+* Use:
+
+  * Firewall rules
+  * Access control lists (ACLs)
+
+---
+
+## 🛡️ 4. Monitor for Exploitation Attempts
+
+Watch for signs like:
+
+* Suspicious HTTP requests targeting unusual file paths
+* Access to sensitive files via web endpoints
+* Unexpected DCA account activity
+
+Enable logging and review:
+
+* Web server logs
+* Authentication logs
+* System audit logs
+
+---
+
+## 🔑 5. Rotate Credentials & Validate Systems
+
+If there's any chance the vulnerability was exploited:
+
+* Reset **DCA credentials**
+* Audit connected systems for lateral movement
+* Check for unauthorized access or persistence mechanisms
+
+---
+
+## 🧠 Why This Matters
+
+This vulnerability allows:
+
+* **Unauthenticated access**
+* **Credential theft**
+* **Privilege escalation across systems**
+
+That combination makes it particularly dangerous in SD-WAN environments where systems are interconnected.
+
+---
+
+## ✔️ Bottom line
+
+* **Best fix:** Upgrade to **20.18+**
+* **Short-term mitigation:** Lock down file access + restrict network exposure
+* **Aftercare:** Rotate credentials and monitor logs
+
+---
+
+If you want, I can help you:
+
+* Check whether your current version is vulnerable
+* Write firewall/ACL rules
+* Or create a quick audit checklist for your environment

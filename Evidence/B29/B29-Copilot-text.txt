@@ -1,0 +1,70 @@
+**The fix for CVE‑2026‑20128 is to upgrade Cisco Catalyst SD‑WAN Manager to a software release that contains Cisco’s official patch. All releases **20.18 and later** are not affected.**   [sec.cloudapps.cisco.com](https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-authbp-qwCX8D4v)
+
+---
+
+### What you must do to remediate CVE‑2026‑20128
+
+Cisco’s advisory is explicit: **there are no workarounds** for this vulnerability, and **patching is the only fix**.   [sec.cloudapps.cisco.com](https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-authbp-qwCX8D4v)
+
+#### 1. **Upgrade to a fixed software release**
+Cisco has released patched versions across multiple branches. The following versions contain fixes for CVE‑2026‑20128 (and related SD‑WAN vulnerabilities):   [thehackernews.com](https://thehackernews.com/2026/03/cisco-confirms-active-exploitation-of.html)
+
+| Current Release Branch | Fixed Version |
+|------------------------|---------------|
+| Earlier than 20.9      | Migrate to a fixed release |
+| 20.9                   | **20.9.8.2** |
+| 20.11                  | **20.12.6.1** |
+| 20.12                  | **20.12.5.3** or **20.12.6.1** |
+| 20.13 / 20.14 / 20.15  | **20.15.4.2** |
+| 20.16                  | **20.18.2.1** |
+| 20.18                  | **20.18.2.1** |
+
+Cisco also confirms that **20.18 and later are not affected**.   [sec.cloudapps.cisco.com](https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-authbp-qwCX8D4v)
+
+#### 2. **Check for indicators of compromise (IoCs)**
+Because CVE‑2026‑20128 has been **actively exploited in the wild**, Cisco recommends checking logs before and after upgrading.   [sec.cloudapps.cisco.com](https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-authbp-qwCX8D4v)
+
+Look for suspicious access to:
+
+```
+/reports/data/opt/data/containers/config/data-collection-agent/.dca
+```
+
+in:
+
+```
+/var/log/nms/containers/service-proxy/serviceproxy-access.log
+```
+
+Unexpected GET requests to this path may indicate that an attacker retrieved the DCA credential file.   [sec.cloudapps.cisco.com](https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-authbp-qwCX8D4v)
+
+#### 3. **Open a Cisco TAC case (strongly recommended)**
+Cisco’s remediation workflow instructs customers to:   [Cisco](https://www.cisco.com/c/en/us/support/docs/routers/sd-wan/225525-internal-remediate-catalyst-sd-wan.html)
+
+- Collect **admin‑tech** bundles from all SD‑WAN components (vManage, vSmart, vBond)
+- Provide them to TAC for assessment
+- Allow TAC to determine whether compromise occurred and guide the remediation path
+
+This is especially important because exploitation of this CVE can allow attackers to pivot to other SD‑WAN systems using stolen DCA credentials.
+
+#### 4. **Apply hardening measures**
+While not a substitute for patching, Cisco and government agencies recommend additional defensive steps:   [Cyber.gov.au](https://www.cyber.gov.au/about-us/view-all-content/alerts-and-advisories/exploitation-of-cisco-sd-wan-appliances)
+
+- Place SD‑WAN Manager behind a firewall  
+- Disable HTTP access to the SD‑WAN Manager UI  
+- Restrict access to management interfaces  
+- Change default admin passwords  
+- Monitor logs for unusual API activity  
+
+---
+
+### Summary
+
+To fix CVE‑2026‑20128:
+
+1. **Upgrade to a patched release (20.18+ or the fixed version for your branch).**  
+2. **Check logs for IoCs related to unauthorized access to `.dca` credential files.**  
+3. **Engage Cisco TAC for assessment and guided remediation.**  
+4. **Harden SD‑WAN Manager access to reduce attack surface.**
+
+If you want, I can help you determine which fixed version applies to your current deployment or walk you through the upgrade path.

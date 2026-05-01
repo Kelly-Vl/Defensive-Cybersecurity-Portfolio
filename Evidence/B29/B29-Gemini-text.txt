@@ -1,0 +1,30 @@
+To fix **CVE-2026-20128**, you need to address the root cause: an insecurely stored credential file that allows unauthenticated access via crafted HTTP requests. Because this is an information disclosure vulnerability leading to lateral movement, prompt action is critical.
+
+---
+
+## 🛠️ Primary Solution: Upgrade Firmware
+Cisco has confirmed that the fix is integrated into the architecture of newer releases. The most direct and effective resolution is to upgrade your Cisco Catalyst SD-WAN Manager (formerly vManage) to a non-vulnerable version.
+
+### Recommended Path
+* **Target Version:** Upgrade to **Cisco Catalyst SD-WAN Manager Release 20.18** or later.
+* **Why:** Versions 20.18+ have removed the insecure credential handling for the Data Collection Agent (DCA) and patched the directory traversal/file read mechanism used to access it.
+
+---
+
+## 🛡️ Immediate Mitigation Steps
+If you cannot upgrade immediately, you should implement the following "hardening" measures to reduce the attack surface:
+
+* **Restrict Access to the Management Interface:** Use Access Control Lists (ACLs) to ensure that the SD-WAN Manager interface is only accessible from trusted administrative subnets. This prevents remote, unauthenticated attackers from reaching the vulnerable DCA endpoint.
+* **Disable Unnecessary Features:** If the **Data Collection Agent (DCA)** feature is not required for your specific deployment, disable it to close the vector entirely.
+* **Monitor HTTP Logs:** Look for unusual GET requests targeting system files or unexpected paths, which may indicate an attacker attempting to locate the DCA credential file.
+
+---
+
+## 📝 Best Practices for SD-WAN Security
+Beyond this specific patch, keep these "hygiene" tips in mind for Catalyst SD-WAN:
+
+1.  **RBAC (Role-Based Access Control):** Ensure that even if a user like `DCA` is compromised, their privileges are strictly limited to what is necessary.
+2.  **Regular Audits:** Periodically check for "orphan" or hardcoded credential files within the system's file structure.
+3.  **Use Cisco Software Checker:** Use the [Cisco Software Checker tool](https://tools.cisco.com/security/center/softwarechecker.x) by uploading your running configuration or selecting your version to identify all applicable vulnerabilities beyond just this CVE.
+
+> **Note:** Always perform a backup of your SD-WAN Manager configuration and database before initiating a version upgrade to ensure a recovery point is available.
