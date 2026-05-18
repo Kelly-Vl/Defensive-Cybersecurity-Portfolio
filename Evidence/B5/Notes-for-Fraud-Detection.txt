@@ -1,0 +1,87 @@
+Sim Swapper:
+- Attacker could try and change your number to their mobile
+- And impersonate you (e.g. lost my card in some place, can you activate new number in my place)
+- Usually have security questions, but if attacker knows you enough, then they can bypass that
+- Can takeover you accounts, take money out of your accounts
+- Indicators:
+-- Cannot log in to bank
+-- Lots of spendings that you are not actually doing
+- How to contact bank to tell them that it is not actually you?
+-- If you report, bank will take your word for it and lockdown your account
+-- But need to verify your identity first through Australia POST
+-- Then get in contact with your phone
+-- 
+
+Card Fraud
+Skimming??
+- Skimming device copies the magnetic strip of the number
+- Onto some sort of external machine
+- Since it's copied, can make it look like the actual customer is doing the transaction
+- Can see it's being done if, for ex, no PIN was associated with the transaction/money taken out
+- 
+
+Money Laundering
+- Asking other people to move money in and out
+- Identifiable if new account has no history and is only moving money in and out (not even groceries)
+- 
+
+Real case study:
+- look at one guy's bank account
+- had many cash withdrawals
+- making it obvious where it was not a routine, going out of the way to go to different locations to do cash withdrawals
+- notified the police to check whether anyone was doing it
+- every single time on Thursday, Perth local who lives in Cockburn
+- 
+
+Account Takeover
+- 
+
+Application Fraud
+- Can tell AI to narrate a fake message
+- Romance & Pig Butchering: social engineering, 
+- Business Email Compromise: a lot in businesses that generate a lot of invoices needed for payment, attacker compromise the business, they know you need to pay an invoice, change business account details before email is sent, so people sending money to fake accounts
+-- Send a test first before actually making the payment, or call the bank to confirm the details
+-- Business held accountable and takes the loss, hard for business when this happens because they need to change a lot of their system, dk how long the attacker has been in the business, stop all invoices that had to be sent out that day
+-
+
+Detection Signals: Technical & Behavioral
+- Reports live data
+- Goes into database and generate rules
+- Bank tries to know customer, build an idea/profile of them
+- How you spend patterns, card-heavy? phone-heavy? only use one device for banking? IP tracked? Not much spent from you except on Saturday (e.g.), biometrics, timing when you do banking, 
+
+
+Fraud Detection Methods
+- Rule-Based Detection:
+- Machine Learning Models:
+- Risk Scoring Engines:
+- Hybrid approaches
+
+Analysis Investigation
+- System that flags the anomalies
+- assign someone to deep dive analysis to it
+- look at previous history and see if it makes sense to you
+- If cannot make a decision, contacts the person themselves
+- Then do whatever the decision that was decided (block? monitor? quarantine?)
+- Try to do it as fast as possible
+
+
+False Positives & False Negatives
+-
+
+
+AI Being Weaponised
+- Attacker's toolkit increased because of AI
+- Attacks used to have wrong grammar, or too long emails
+- But now AI can help with producing "professional" emails
+- So Phishing is getting more sophisticated
+- Voice Cloning: AI model does not have breath control, so voice can say a whole sentence without taking a breath, but still really hard to see it
+- Deepfake: Fake live videos, if lose your id and someone tries to create an account with your id, they don't look like you but they can deepfake your face to try and impersonate you to bypass the live video  checks (biometrics), easier to do on webcam than phones,
+- Automated Scam Scaling: use bots to mass send scams to a lot of people, and then call back those who tried to return the call, kinda like clickbait, attakcers will see if it's worth attacking or not
+
+AI as Defensive Tools
+- AI models that can detect biometric
+-  
+
+Career in Fraud Analysis
+- 
